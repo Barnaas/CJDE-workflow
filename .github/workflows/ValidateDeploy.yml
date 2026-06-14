@@ -1,0 +1,19 @@
+name: Convert and Deploy Modified SIgma Rules
+
+on:
+ push: 
+   paths: 
+      -"rules/**.yml"
+  pull_request:
+      paths:
+        -"rules/**.yml"
+  # Manual triggers
+  Workflow_dispatch:
+Jobs:
+  #step 1: Validate sigma rules
+  validate: 
+    runs-on: ubuntu-latest
+    step: 
+      -name: checkout code
+      uses: action/checkout@v3
+      with:
